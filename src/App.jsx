@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
+import { useQuery } from './hooks/useQuery'
 // https://www.omdbapi.com/?apikey=e2c2f451&t=star+wars
+
 function App () {
-  const [query, setQuery] = useState('')
-  const [error, setError] = useState(null)
-  const isFirstInput = useRef(true)
   const { movies } = useMovies()
+  const { query, handleChange, error, setError } = useQuery()
   console.log('Rendering app')
   function handleSubmit (e) {
     e.preventDefault()
@@ -17,21 +16,7 @@ function App () {
     }
     console.log({ query })
   }
-  useEffect(() => {
-    if (isFirstInput.current) {
-      isFirstInput.current = query === ''
-      return
-    }
 
-    if (query.trim().length < 3) {
-      setError('Introduce at least 3 chars')
-      return
-    }
-    setError(null)
-  }, [query])
-  function handleChange (e) {
-    setQuery(e.target.value)
-  }
   return (
     <div className='app'>
       <header>

@@ -8,7 +8,8 @@ Moovies API: https://www.omdbapi.com/
 
 ## Requirements for the technical assessment
 
-- Show an input and a button to search the moovie
+- Show an input and a button to search the moovie ✅
+- Validate the search by making sure is not an empty string or less than 3 chars ✅
 - List the moovies with their title, year and cover image
 - Make the app to be resposive
 
