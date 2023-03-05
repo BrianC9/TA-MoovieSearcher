@@ -1,39 +1,38 @@
-.app{
+.app {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    gap: 2rem;
 }
-form{
+.error{
+    border:2px solid red;
+    border-radius: .5rem;
+    text-align: center;
+    padding: .5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+h1{
+    text-align: center;
+}
+form {
     display: flex;
 }
 
-.moovies-container{
-    --auto-grid-min-size: 16rem;
-  
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
-  grid-gap: 1rem;
-   
-    
+.movies-container {
+    display: grid;
+    gap: 2rem;
 }
 
-.moovie-card {
-display: flex ;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding: 2rem;
-border-radius: 1rem;
-background: var(--background);
-max-width: 270px;
-}
-
-.moovie-card img{
-    min-height: 500px;
-    object-fit: cover;
-}
-.moovie-card h4{
-    border-top: 2px solid white;
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: var(--background);
+    max-width: 270px;
 }
