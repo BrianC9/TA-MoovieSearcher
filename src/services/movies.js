@@ -1,3 +1,4 @@
+const key = 'e2c2f451'
 
 export async function searchMovies ({ query }) {
   if (query === '') return null

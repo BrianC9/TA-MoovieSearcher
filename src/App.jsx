@@ -5,8 +5,8 @@ import { useQuery } from './hooks/useQuery'
 // https://www.omdbapi.com/?apikey=e2c2f451&t=star+wars
 
 function App () {
-  const { movies, getMovies } = useMovies()
-  const { query, handleChange, error } = useQuery()
+  const { movies, getMovies, isLoading, errorMovies } = useMovies()
+  const { query, handleChange, error: errorQuery } = useQuery()
   console.log('Rendering app')
   function handleSubmit (e) {
     e.preventDefault()
@@ -21,11 +21,13 @@ function App () {
         <h1>Moovie searcher</h1>
         <form onSubmit={handleSubmit}>
           <input required value={query} onChange={handleChange} name='query' type='text' placeholder='Batman, Star wars...' />
-          <button type='submit' disabled={error}>search</button>
+          <button type='submit' disabled={errorQuery}>search</button>
         </form>
       </header>
       <main>
-        {error && <p className='error'>{error}</p>}
+        {errorQuery && <p className='error'>{errorQuery}</p>}
+        {errorMovies && <p className='error'>{errorMovies}</p>}
+        {isLoading && <p>Loading movies...</p>}
         <Movies movies={movies} query={query} />
       </main>
     </div>

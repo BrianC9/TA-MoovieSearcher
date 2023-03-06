@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 export function useQuery () {
   const [query, setQuery] = useState('')
-  const [error, setError] = useState(null)
+  const [errorQuery, setError] = useState(null)
   const isFirstInput = useRef(true)
 
   function handleChange (e) {
@@ -18,7 +18,7 @@ export function useQuery () {
       return
     }
     setError(null)
-  }, [query, error, setError])
+  }, [query, errorQuery, setError])
 
-  return { query, handleChange, error, setError, isFirstInput }
+  return { query, handleChange, errorQuery, setError, isFirstInput }
 }
