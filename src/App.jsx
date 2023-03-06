@@ -5,8 +5,8 @@ import { useQuery } from './hooks/useQuery'
 // https://www.omdbapi.com/?apikey=e2c2f451&t=star+wars
 
 function App () {
-  const { movies, getMovies, isLoading, errorMovies } = useMovies()
   const { query, handleChange, error: errorQuery } = useQuery()
+  const { movies, getMovies, isLoading, errorMovies } = useMovies(query)
   console.log('Rendering app')
   function handleSubmit (e) {
     e.preventDefault()
