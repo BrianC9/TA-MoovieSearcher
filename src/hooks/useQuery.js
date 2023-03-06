@@ -20,5 +20,5 @@ export function useQuery () {
     setError(null)
   }, [query, error, setError])
 
-  return { query, handleChange, error, setError }
+  return { query, handleChange, error, setError, isFirstInput }
 }

@@ -6,7 +6,7 @@ function MovieList ({ movies }) {
         const { title, poster, year, id } = movie
         return (
           <div key={id} className='movie-card'>
-            <img src={poster} alt={`Poster from the film ${title}`} />
+            <img src={poster === 'N/A' ? 'https://picsum.photos/300/400' : poster} alt={`Poster from the film ${title}`} />
             <h4>{title}</h4>
             <p>{year}</p>
           </div>
@@ -16,10 +16,10 @@ function MovieList ({ movies }) {
   )
 }
 function NoResults () {
-  return <p>There are no results</p>
+  return <p>There are no results </p>
 }
 export function Movies ({ movies }) {
-  const hasMovies = movies.length > 0
+  const hasMovies = movies?.length > 0
   return (
     hasMovies ? <MovieList movies={movies} /> : <NoResults />
 
