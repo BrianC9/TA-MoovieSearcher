@@ -19,7 +19,13 @@ function App () {
   }, [getMovies])
 
   function handleChange (e) {
-    updateQuery(e.target.value)
+    const newQuery = e.target.value
+    updateQuery(newQuery)
+    if (newQuery === '') return
+
+    setTimeout(() => {
+      getMovies({ query: newQuery })
+    }, 1500)
   }
   return (
     <div className='app'>

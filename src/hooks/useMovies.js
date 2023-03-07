@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo, useCallback } from 'react'
 import { searchMovies } from '../services/movies'
 export function useMovies ({ query, sort }) {
   const [movies, setMovies] = useState([])
@@ -6,24 +6,23 @@ export function useMovies ({ query, sort }) {
   const [errorMovies, setError] = useState(null)
   const previousQuery = useRef(query)
 
-  const getMovies = useMemo(() => {
-    return async ({ query }) => {
-      if (previousQuery.current === query) return
-      try {
-        previousQuery.current = query
-        setIsLoading(true)
-        const responseMovies = await searchMovies({ query })
-        setMovies(responseMovies)
-      } catch (error) {
-        setError(error.message)
-        setTimeout(() => {
-          setError(null)
-        }, 3000)
-      } finally {
-        setIsLoading(false)
-      }
+  const getMovies = useCallback(async ({ query }) => {
+    if (previousQuery.current === query) return
+    try {
+      previousQuery.current = query
+      setIsLoading(true)
+      const responseMovies = await searchMovies({ query })
+      setMovies(responseMovies)
+    } catch (error) {
+      setError(error.message)
+      setTimeout(() => {
+        setError(null)
+      }, 3000)
+    } finally {
+      setIsLoading(false)
     }
-  }, [])
+  }
+  , [])
 
   const sortedMovies = useMemo(() => {
     return sort

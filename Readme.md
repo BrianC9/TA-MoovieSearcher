@@ -17,6 +17,7 @@ Movies API: https://www.omdbapi.com/
 
 - Avoid to make the same request on submit ✅
 - Make the Movies fetching while typing on the input search
+- Implement debounce for the search input
 
 ## Tech Stack
 
