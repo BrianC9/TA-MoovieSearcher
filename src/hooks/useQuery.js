@@ -4,15 +4,18 @@ export function useQuery () {
   const [errorQuery, setError] = useState(null)
   const isFirstInput = useRef(true)
 
-  function handleChange (e) {
-    setQuery(e.target.value)
+  function updateQuery (value) {
+    setQuery(value)
   }
   useEffect(() => {
     if (isFirstInput.current) {
       isFirstInput.current = query === ''
       return
     }
-
+    if (query.trim() === '') {
+      setError(null)
+      return
+    }
     if (query.trim().length < 3) {
       setError('Introduce at least 3 chars')
       return
@@ -20,5 +23,5 @@ export function useQuery () {
     setError(null)
   }, [query, errorQuery, setError])
 
-  return { query, handleChange, errorQuery, setError, isFirstInput }
+  return { query, updateQuery, errorQuery, setError, isFirstInput }
 }
