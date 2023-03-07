@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import debounce from 'just-debounce-it'
 import './App.css'
 import { Movies } from './components/Movies'
 import { useMovies } from './hooks/useMovies'
@@ -18,14 +19,16 @@ function App () {
     console.log('Getting new getMovies', getMovies)
   }, [getMovies])
 
+  const debouncedGetMovies = useCallback(debounce(newQuery => {
+    getMovies({ query: newQuery })
+  }, 2000), [])
+
   function handleChange (e) {
     const newQuery = e.target.value
     updateQuery(newQuery)
     if (newQuery === '') return
 
-    setTimeout(() => {
-      getMovies({ query: newQuery })
-    }, 1500)
+    debouncedGetMovies(newQuery)
   }
   return (
     <div className='app'>
